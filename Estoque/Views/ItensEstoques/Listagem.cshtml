@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Estoque.Models.ItensEstoque>
+
+<h1>Listagem de Itens</h1>
+
+<div class="text-center table-responsive"">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Setor</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Setor</td>
+                    <td>@item.Quantidade</td>
+                    <td>
+                        @if (item.PrecisaReabastecer)
+                        {
+                            <div class="alert alert-danger">
+                                A quantidade de @item.Nome está baixa. Por favor, reabasteça o estoque.
+                            </div>
+                        }
+                        else
+                        {
+                            if (item.Quantidade > 30)
+                            {
+                                <div class="alert alert-success">
+                                    A quantidade de @item.Nome está acima de 30. Está boa!
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-warning">
+                                    A quantidade de @item.Nome está entre 10 e 30. Considere comprar mais.
+                                </div>
+                            }
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
