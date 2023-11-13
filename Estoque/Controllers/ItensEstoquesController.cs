@@ -22,9 +22,9 @@ namespace Estoque.Controllers
         // GET: ItensEstoques
         public async Task<IActionResult> Index()
         {
-              return _context.Itens != null ? 
-                          View(await _context.Itens.ToListAsync()) :
-                          Problem("Entity set 'BancoContext.Itens'  is null.");
+            return _context.Itens != null ?
+                        View(await _context.Itens.ToListAsync()) :
+                        Problem("Entity set 'BancoContext.Itens'  is null.");
         }
 
         // GET: ItensEstoques/Details/5
@@ -169,42 +169,14 @@ namespace Estoque.Controllers
             {
                 _context.Itens.Remove(itensEstoque);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ItensEstoqueExists(int id)
         {
-          return (_context.Itens?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
-
-        public IActionResult DetalhesItem(int id)
-        {
-            var listaItens = new List<ItensEstoque>
-    {
-        new ItensEstoque { Id = 1, Nome = "ProdutoA", Setor = "Descrição do ProdutoA", Quantidade = 20 },
-        // Adicione outros itens conforme necessário
-    };
-
-            var item = listaItens.FirstOrDefault(i => i.Id == id);
-
-            if (item == null)
-            {
-                return NotFound();
-            }
-
-            // Adiciona uma mensagem de erro temporária se a quantidade estiver baixa
-            if (item.Quantidade <= 10)
-            {
-                TempData["ErroReabastecimento"] = $"A quantidade de {item.Nome} está baixa. Por favor, reabasteça o estoque.";
-            }
-            else if (item.Quantidade > 10 && item.Quantidade <= 30)
-            {
-                TempData["ErroReabastecimento"] = $"A quantidade de {item.Nome} está entre 10 e 30. Considere comprar mais.";
-            }
-
-            return View(item);
+            return (_context.Itens?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
         public IActionResult Listagem()
@@ -217,7 +189,5 @@ namespace Estoque.Controllers
 
             return View(listaItens);
         }
-
-
     }
 }

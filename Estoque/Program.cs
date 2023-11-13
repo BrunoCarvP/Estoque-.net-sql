@@ -34,6 +34,8 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "estoque",
-    pattern: "{controller=ItensEstoque}/{action=Index}/{id?}");
+    pattern: "{controller=Estoque}/{action=Index}/{id?}");
+
+
 
 app.Run();

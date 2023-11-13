@@ -25,12 +25,11 @@
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-                <div class="form-group">
-                    <label asp-for="Setor" class="control-label"></label>
-                    <select asp-for="Setor" class="form-select" aria-label="Default select example">
-                        <option value="Setor"></option>
+                <div class="mb-3">
+                    <label asp-for="Setor" class="form-label">Setor</label>
+                    <select asp-for="Setor" asp-items="Html.GetEnumSelectList<SetorEnum>()" class="form-control">
+                        <option value="" disabled selected>Selecione o setor</option>
                     </select>
-                    <span asp-validation-for="Setor" class="text-danger"></span>
                 </div>
             <div class="form-group">
                 <label asp-for="Quantidade" class="control-label"></label>
@@ -39,18 +38,12 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-                <div>
                     <a class="btn btn-primary" asp-action="Index">Back to List</a>
-                </div>
+            </div>
+
         </form>
     </div>
 </div>
 
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
 </body>
 </html>

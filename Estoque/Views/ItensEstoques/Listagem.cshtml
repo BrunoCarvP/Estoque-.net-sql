@@ -2,7 +2,7 @@
 
 <h1>Listagem de Itens</h1>
 
-<div class="text-center table-responsive"">
+<div class="text-center table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -11,6 +11,8 @@
                 <th scope="col">Setor</th>
                 <th scope="col">Quantidade</th>
                 <th scope="col">Ações</th>
+                <th scope="col">Fazer pedido</th>
+
             </tr>
         </thead>
         <tbody>
@@ -43,8 +45,13 @@
                                 </div>
                             }
                         }
-
                     </td>
+                    <td class="text-center">
+                        <div>
+                            <a class="btn btn-primary" asp-action="Index">Pedir</a>
+                        </div>
+                    </td>
+                    
                 </tr>
             }
         </tbody>

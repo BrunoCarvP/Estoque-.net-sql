@@ -7,7 +7,7 @@ namespace Estoque.Models
         Cozinha,
         Limpeza,
         Fabrica,
-        Administracao
+        Administração
     }
     public class ItensEstoque
     {
