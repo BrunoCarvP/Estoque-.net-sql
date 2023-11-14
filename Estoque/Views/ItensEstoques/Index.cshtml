@@ -9,25 +9,27 @@
         <a class="btn btn-primary" asp-action="Create">Create New</a>
     </div>
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-striped table-hover">
             <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Setor</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Ações</th>
+                <tr >
+                    <th class="text-center" scope="col">Id</th>
+                    <th class="text-center" scope="col">Nome</th>
+                    <th class="text-center" scope="col">Setor</th>
+                    <th class="text-center" scope="col">Quantidade de pacotes</th>
+                    <th class="text-center cont-header" scope="col">Contagem</th>
+                    <th class="text-center" scope="col">Ações</th>
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody >
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <th scope="row">@item.Id</th>
-                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Setor)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Quantidade)</td>
+                        <th class="text-center" scope="row">@item.Id</th>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Nome)</td>
+                        @* <td class="text-center">@Enum.GetName(typeof(SetorEnum), Enum.Parse(typeof(SetorEnum), item.Setor))</td> *@
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Setor)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Quantidade)</td>
                         <td class="text-center">
                             <div class="d-flex align-items-center">
                                 @if (item.PrecisaReabastecer)
@@ -52,11 +54,13 @@
                                     }
                                 }
 
-                                <div class="ms-3">
-                                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                    <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                    <a class="btn btn-primary btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                </div>
+                                <td>
+                            <div class="ms-3 text-center acoes-container">
+                                <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                <a class="btn btn-primary btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </div>
+                                </td>
                             </div>
                         </td>
                     </tr>

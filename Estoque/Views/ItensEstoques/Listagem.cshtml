@@ -3,15 +3,15 @@
 <h1>Listagem de Itens</h1>
 
 <div class="text-center table-responsive">
-    <table class="table">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Setor</th>
-                <th scope="col">Quantidade</th>
-                <th scope="col">Ações</th>
-                <th scope="col">Fazer pedido</th>
+                
+                <th class="text-center" scope="col">Nome</th>
+                <th class="text-center" scope="col">Setor</th>
+                <th class="text-center" scope="col">Quantidade</th>
+                <th class="text-center acoes-header" scope="col">Ações</th>
+                <th class="text-center" scope="col">Fazer pedido</th>
 
             </tr>
         </thead>
@@ -19,35 +19,37 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Nome</td>
-                    <td>@item.Setor</td>
-                    <td>@item.Quantidade</td>
-                    <td>
-                        @if (item.PrecisaReabastecer)
-                        {
-                            <div class="alert alert-danger">
-                                A quantidade de @item.Nome está baixa. Por favor, reabasteça o estoque.
-                            </div>
-                        }
-                        else
-                        {
-                            if (item.Quantidade > 30)
+                    
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Nome)</td>
+                    @* <td class="text-center">@Enum.GetName(typeof(SetorEnum), Enum.Parse(typeof(SetorEnum), item.Setor))</td> *@
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Setor)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Quantidade)</td>
+                    <td >
+                        <div class="d-flex align-items-center">
+                            @if (item.PrecisaReabastecer)
                             {
-                                <div class="alert alert-success">
-                                    A quantidade de @item.Nome está acima de 30. Está boa!
+                                <div class="alert alert-danger alert-sm mb-0">
+                                    A quantidade de @item.Nome está baixa. Por favor, reabasteça o estoque.
                                 </div>
                             }
                             else
                             {
-                                <div class="alert alert-warning">
-                                    A quantidade de @item.Nome está entre 10 e 30. Considere comprar mais.
-                                </div>
+                                if (item.Quantidade > 30)
+                                {
+                                    <div class="alert alert-success alert-sm mb-0">
+                                        A quantidade de @item.Nome está acima de 30. Está boa!
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning alert-sm mb-0">
+                                        A quantidade de @item.Nome está entre 10 e 30. Considere comprar mais.
+                                    </div>
+                                }
                             }
-                        }
                     </td>
-                    <td class="text-center">
-                        <div>
+                    <td class="text-center ">
+                        <div class="acoes-container">
                             <a class="btn btn-primary" asp-action="Index">Pedir</a>
                         </div>
                     </td>

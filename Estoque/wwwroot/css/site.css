@@ -64,3 +64,13 @@ body {
 .btn {
     margin-right: 5px;
 }
+.acoes-header {
+    width: 200px;
+}
+.cont-header {
+    width:500px;
+}
+.acoes-container {
+    padding: 10px;
+
+}
